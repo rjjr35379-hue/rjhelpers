@@ -4,11 +4,20 @@ plugins {
     id 'java'
 }
 
-version = project.mod_version
-group = project.maven_group
+
+
+
+
+group = 'com.github.rjjr35379-hue'
+version = '1.0.1'
 
 base {
     archivesName = 'rjhelpers'
+}
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.release = 17
+    }
 }
 
 repositories {
@@ -48,6 +57,9 @@ java {
 
 	sourceCompatibility = JavaVersion.VERSION_17
 	targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+    withJavadocJar()
+
 }
 
 jar {
@@ -63,6 +75,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+            artifactId = 'rjhelpers'
         }
     }
 
